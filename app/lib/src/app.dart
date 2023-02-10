@@ -21,7 +21,8 @@ class _AppState extends State<App> {
   }
 
   Future<void> init() async {
-    await windowManager.setTitle('更好的廢土機器人 V${await Util.getAppVersion()}');
+    await windowManager
+        .setTitle('NelsonSMP BOT V${await Util.getAppVersion()}');
     SentryFlutter.setAppStartEnd(DateTime.now().toUtc());
     Logger.root.info('App started');
 
@@ -46,7 +47,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '更好的廢土機器人',
+      title: 'NelsonSMP BOT',
       navigatorKey: NavigationService.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

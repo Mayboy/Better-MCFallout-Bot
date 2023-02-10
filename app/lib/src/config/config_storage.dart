@@ -28,6 +28,10 @@ class ConfigStorage {
   set autoReconnect(bool value) =>
       ConfigHelper.set<bool>('auto_reconnect', value);
 
+  bool get autototem =>
+      ConfigHelper.get<bool>('autototem', defaultValue: true)!;
+  set autototem(bool value) => ConfigHelper.set<bool>('autototem', value);
+
   BotActionType get botAction =>
       BotActionType.values.byName(ConfigHelper.get<String>('bot_action_type',
           defaultValue: BotActionType.afk.name)!);

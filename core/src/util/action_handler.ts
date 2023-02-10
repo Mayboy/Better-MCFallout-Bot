@@ -53,6 +53,7 @@ export class ActionHandler {
         config.trade_publicity = newConfig.trade_publicity;
         config.allow_tpa = newConfig.allow_tpa;
         config.attack_interval_ticks = newConfig.attack_interval_ticks;
+        config.autototem = newConfig.autototem;
 
         BotHelper.autoEatConfig(bot);
 
@@ -126,6 +127,7 @@ export class ActionHandler {
         ];
 
         const swords = ["netherite_sword", "diamond_sword", "iron_sword"];
+        const totems = ["totem_of_undying"]
 
         for (const entity_key in bot.entities) {
           const entity = bot.entities[entity_key];
@@ -135,6 +137,21 @@ export class ActionHandler {
             const isEquip = bot.player.entity.equipment.some((e) =>
               swords.includes(e.name)
             );
+            if(config.autototem = true){
+              for (const totem of totems) {
+                const basttotem = bot.inventory.findInventoryItem(
+                  totem,
+                  null,
+                  false
+                );
+  
+                if (basttotem != null) {
+                  await bot.equip(basttotem, "off-hand");
+                }
+              }
+            }
+
+         
             if (!isEquip) {
               // Equip the best sword
               for (const sword of swords) {

@@ -17,6 +17,7 @@ class BotStatusPage extends StatefulWidget {
 class _BotStatusPageState extends State<BotStatusPage> {
   late bool autoEat;
   late bool autoThrow;
+  late bool autototem;
   late bool autoReconnect;
   late BotActionType botAction;
   late TextEditingController commandController;
@@ -27,6 +28,7 @@ class _BotStatusPageState extends State<BotStatusPage> {
     autoThrow = appConfig.autoThrow;
     autoReconnect = appConfig.autoReconnect;
     botAction = appConfig.botAction;
+    autototem = appConfig.autototem;
 
     commandController = TextEditingController();
 
@@ -182,6 +184,23 @@ class _BotStatusPageState extends State<BotStatusPage> {
                                   widget.bot.updateConfig();
                                 },
                                 title: const Text('自動飲食')),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 170,
+                          height: 50,
+                          child: Tooltip(
+                            message: '自動在副手放置圖騰',
+                            child: SwitchListTile(
+                                value: autototem,
+                                onChanged: (value) {
+                                  setState(() {
+                                    autototem = value;
+                                  });
+                                  appConfig.autototem = autototem;
+                                  widget.bot.updateConfig();
+                                },
+                                title: const Text('自動圖騰')),
                           ),
                         ),
                         SizedBox(

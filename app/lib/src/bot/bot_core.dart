@@ -102,19 +102,14 @@ class BotCore {
   }
 
   Future<void> _connect() async {
-    if (region == ServerRegion.auto) {
-      host = await ServerRegion.getBestHost();
-    } else {
-      host = region.host;
-    }
+    host = region.host;
 
     final config = _getConfig();
 
     if (kDebugMode) {
       /// Run the core in debug mode (without compiling to the executable)
       final workingDirectory = join(dirname(Directory.current.path), 'core');
-      await Process.run('yarn', ['build'],
-          workingDirectory: workingDirectory);
+      await Process.run('yarn', ['build'], workingDirectory: workingDirectory);
       process = await Process.start(
           'node', ['dist/index.js', json.encode(config)],
           workingDirectory: workingDirectory);

@@ -5,5 +5,5 @@ call script/build_core_windows.bat
 cd app
 echo "[Info] Building the app"
 flutter build windows --release
-
+pause
 echo "[Info] Done"
